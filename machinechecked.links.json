@@ -1,0 +1,481 @@
+{
+  "version": 1,
+  "papers": {
+    "https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf": {
+      "theorem-1.1": {
+        "lean": [
+          "NavierStokes.Comparator.navier_stokes_breakdown_R3",
+          "NavierStokesR3.theorem_1_1"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "theorem-3.1": {
+        "lean": [
+          "NavierStokes.LocalPaper.local_theorem"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-10.1": {
+        "lean": [
+          "NavierStokes.PaperLocalization.local_theorem_with_compact_candidate"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-10.2": {
+        "lean": [
+          "NavierStokes.PeriodicResidualLimits.boundaryLimits_locallyUniform"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-10.3": {
+        "lean": [
+          "NavierStokesR3.ActualCandidate.of_localized_fields"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-10.4": {
+        "lean": [
+          "NavierStokesR3.CompactEnergy.candidate_energy_estimates"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-10.5": {
+        "lean": [
+          "NavierStokesR3.WholeSpaceUniqueness.candidate_unique_on_Icc"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "corollary-10.6": {
+        "lean": [
+          "NavierStokes.Comparator.navier_stokes_breakdown_periodic",
+          "NavierStokes.PeriodicPaper.periodic_corollary"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-4.1": {
+        "lean": [
+          "NavierStokes.SimilarityProfile.partialT_pullback"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-4.2": {
+        "lean": [
+          "NavierStokes.LeadingStress.navierStokesResidual_tangential"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-4.3": {
+        "lean": [
+          "NavierStokes.ProfileHistories.Profiles.angularLag_integrated"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-4.4": {
+        "lean": [
+          "NavierStokes.SeedHandbackJets.profile_comparison_norm"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-4.5": {
+        "lean": [
+          "NavierStokes.SeedConePaper.compact_large_lag_with_admissibility"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "theorem-4.6": {
+        "lean": [
+          "NavierStokes.LeadingStressWeights.exists_weighted_profile"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-4.7": {
+        "lean": [
+          "NavierStokes.PowerMomentMatrix.bumpMomentMatrix_det_ne_zero"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-4.9": {
+        "lean": [
+          "NavierStokes.TerminalHistoryBridge.forward_stresses_eq_profile"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-4.11": {
+        "lean": [
+          "NavierStokes.TrueConeLoopPaper.exists_local_family_with_margin"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-5.1": {
+        "lean": [
+          "NavierStokes.SlowRecursion.exists_local_slow_hierarchy"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-5.2": {
+        "lean": [
+          "NavierStokes.GlobalSlowProfiles.exists_step"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-5.3": {
+        "lean": [
+          "NavierStokes.BaseResidual.finite_error_rate"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-5.4": {
+        "lean": [
+          "NavierStokes.SlowBorelBase.exists_base_fields"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-5.5": {
+        "lean": [
+          "NavierStokes.FinalSlowBase.exists_final_base"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-6.1": {
+        "lean": [
+          "NavierStokes.SlotColoring.physical_labels_have_auxiliary_slots"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-6.3": {
+        "lean": [
+          "NavierStokes.LabelCounting.number_of_relevant_labels_restrict"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "definition-6.4": {
+        "lean": [
+          "NavierStokes.WeightedClasses.MeanClass"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "definition-6.5": {
+        "lean": [
+          "NavierStokes.WeightedClasses.WaveClass"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-6.6": {
+        "lean": [
+          "NavierStokes.WeightedClasses.MeanClass.bilinear"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-7.1": {
+        "lean": [
+          "NavierStokes.BasePhaseGeometry.FamilyData.construction"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-7.2": {
+        "lean": [
+          "NavierStokes.ParticularWaveBounds.copySolve_waveClass"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-7.4": {
+        "lean": [
+          "NavierStokes.PrimaryODE.primary_bounds"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-7.5": {
+        "lean": [
+          "NavierStokes.PartitionedCovariance.PairData.diagonal_pair_reconstruct"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-7.6": {
+        "lean": [
+          "NavierStokes.SignedCovariance.physical_signed_cross_covariance"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-7.7": {
+        "lean": [
+          "NavierStokes.CurlClassBounds.cylindricalCurl_vectorPotential"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "corollary-7.8": {
+        "lean": [
+          "NavierStokes.CorrectionStep.signedTensorRemainder_mem"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-8.1": {
+        "lean": [
+          "NavierStokes.MeanResidual.exact_mean_balances"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-8.2": {
+        "lean": [
+          "NavierStokes.FourierAlias.cutoffAlias_superflat_of_integratedMean_zero"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-8.3": {
+        "lean": [
+          "NavierStokes.PressureStream.meanPressure_radial_residual_global"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-8.4": {
+        "lean": [
+          "NavierStokes.IntegratedMeanBalances.integrated_axial_constructed_pressure"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "corollary-8.5": {
+        "lean": [
+          "NavierStokes.SignedStressPrimitive.angular_divergence"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-8.6": {
+        "lean": [
+          "NavierStokes.SmoothFamilyTorusInverse.inverse_finiteJets"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-8.7": {
+        "lean": [
+          "NavierStokes.FiveRowRank.five_rows_on_patch"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-8.8": {
+        "lean": [
+          "NavierStokes.DefectIncrementBounds.rankStage_defect_class"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-9.1": {
+        "lean": [
+          "NavierStokes.LinearWaveBounds.constructed_linear_wave_with_flat_error"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-9.2": {
+        "lean": [
+          "NavierStokes.WaveInteractionBounds.wave_mean_bound"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "definition-9.4": {
+        "lean": [
+          "NavierStokes.CorrectionStep.CycleAnalyticInvariant"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-9.5": {
+        "lean": [
+          "NavierStokes.ActualInitialization.initial_invariant"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-9.6": {
+        "lean": [
+          "NavierStokes.ActualCyclePreservation.next_runInvariant"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-9.8": {
+        "lean": [
+          "NavierStokes.ActualCandidateAssembly.estimates"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-9.9": {
+        "lean": [
+          "NavierStokes.LocalPaper.local_theorem"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-A.1": {
+        "lean": [
+          "NavierStokes.PowerMomentMatrix.bumpMomentMatrix_det_ne_zero"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-A.2": {
+        "lean": [
+          "NavierStokes.ClosedIntervalMomentRepair.Data.exists_smooth_same_branch"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "corollary-A.3": {
+        "lean": [
+          "NavierStokes.FiveProfileMoments.physicalMoments_hasFDerivAt_zero"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-A.4": {
+        "lean": [
+          "NavierStokes.OutgoingProfile.exists_outgoing_profile"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-A.5": {
+        "lean": [
+          "NavierStokes.SchedulePressure.axisPressure_lower_bound"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-A.6": {
+        "lean": [
+          "NavierStokes.RadialHeatProfile.scaled_forward_radial_heat_equation"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-A.7": {
+        "lean": [
+          "NavierStokes.HeatSwitchCone.exists_compensated_true_cone"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-A.9": {
+        "lean": [
+          "NavierStokes.ParametricFlatFactor.exists_joint_smooth_factor"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-A.10": {
+        "lean": [
+          "NavierStokes.TerminalCone.profile_full_true_cone"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-B.1": {
+        "lean": [
+          "NavierStokes.AxisOperators.norm_inverseMixed_le"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-B.2": {
+        "lean": [
+          "NavierStokes.NaturalEntrance.exists_common_joint_analytic_profiles"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-B.3": {
+        "lean": [
+          "NavierStokes.NaturalExitBounds.exists_exit"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-B.4": {
+        "lean": [
+          "NavierStokes.ReferenceBounds.exists_reference_bounds"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-B.5": {
+        "lean": [
+          "NavierStokes.ActivationContinuation.exists_activation_continuation"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-B.7": {
+        "lean": [
+          "NavierStokes.ReferenceEndpointRate.exists_entrance_envelope"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-C.1": {
+        "lean": [
+          "NavierStokes.TrueConeLoopPaper.exists_local_family_with_margin"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-C.2": {
+        "lean": [
+          "NavierStokes.ModulatedCone.Repaired.exists_with_moment_repair"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-C.3": {
+        "lean": [
+          "NavierStokes.LeadingStressWeights.exists_weighted_profile"
+        ],
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      }
+    }
+  },
+  "issues": "cgarryZA/NavierStokesAndEuler",
+  "site_url": "https://cgarryza.github.io/NavierStokesAndEuler/",
+  "author": "Christian Garry"
+}
