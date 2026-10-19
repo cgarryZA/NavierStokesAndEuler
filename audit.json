@@ -1,9 +1,9 @@
 {
  "author": "Christian Garry",
- "created": "2026-10-19T14:47:07+00:00",
+ "created": "2026-10-19T16:50:29+00:00",
  "data": "data/index.json",
  "formalisation": {
-  "commit": "d1961e58748d9d2a13ff766b462ebfc40002e243",
+  "commit": "e06440b7d4411320688c8854e7d10e8d722e5109",
   "repository": "cgarryZA/navierstokesandeuler",
   "repository_private": false,
   "toolchain": "leanprover/lean4:v4.34.0-rc2"
@@ -13,13 +13,20 @@
   {
    "id": null,
    "key": "P",
-   "revision": "d1961e58748d9d2a13ff766b462ebfc40002e243",
+   "paper_version": {
+    "checked": true,
+    "id": "manuscript:e06440b",
+    "kind": "manuscript",
+    "label": "Latest manuscript (commit e06440b)",
+    "revision": "e06440b7d4411320688c8854e7d10e8d722e5109"
+   },
+   "revision": "e06440b7d4411320688c8854e7d10e8d722e5109",
    "title": "Finite time blowup for Navier–Stokes",
    "url": "https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf",
    "version": null
   }
  ],
- "release": "v-b85d296bd9c1",
+ "release": "v-b425cdad8e3a",
  "schema": "machinechecked/audit@1",
  "site_url": "https://cgarryza.github.io/NavierStokesAndEuler/",
  "tool": "machinechecked"
