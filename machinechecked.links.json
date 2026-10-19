@@ -4,16 +4,25 @@
     "https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf": {
       "theorem-1.1": {
         "lean": [
-          "NavierStokes.Comparator.navier_stokes_breakdown_R3",
-          "NavierStokesR3.theorem_1_1"
+          "NavierStokesR3.theorem_1_1",
+          "NavierStokes.Comparator.navier_stokes_breakdown_R3"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "theorem_1_1 carries the whole statement for every ν > 0: the force, compact set and fields with all listed properties, and no global smooth solution with uniformly bounded kinetic energy for the same force and zero datum (lim sup ‖u(t)‖_L∞ = ∞ is stated as unbounded speed near t = 1). The project's Comparator declaration navier_stokes_breakdown_R3 carries only the non-existence consequence, in Fefferman's alternative (C) form: some datum and a force in the decay class admit no smooth solution of bounded energy; it does not state the blowup construction or the compact support of the force.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "theorem-3.1": {
         "lean": [
-          "NavierStokes.LocalPaper.local_theorem"
+          "NavierStokes.LocalPaper.local_theorem",
+          "NavierStokes.RadialHeatProfile.radialProfile_source_formula",
+          "NavierStokes.RadialHeatProfile.profile_derivative_bound",
+          "NavierStokes.RadialHeatProfile.radial_heat_equation"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "local_theorem states (i)–(iv) for one set of fields (smooth on all of t < 1, endpoint compatibility as smooth one-sided extensions at every x ≠ 0, the (3.6) asymptotic as |τ^A u_θ − e0| ≤ Cτ^(2h)), with the exterior swirl given as an explicit heat field. The RadialHeatProfile lemmas state that this field has the form r^(−1−2h) H(τ/r²) with H smooth on [0, ∞) and bounded derivatives, and that it solves −∂τ K = ∂²_r K + r^(−1) ∂_r K − r^(−2) K.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
@@ -21,27 +30,45 @@
         "lean": [
           "NavierStokes.PaperLocalization.local_theorem_with_compact_candidate"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "States, for the fields of the local theorem, compactly supported smooth localized fields with div u = 0, u = p = 0 for |t| ≤ 3/8, and u, p equal to the local fields on an open set containing the origin for 3/4 ≤ t < 1, bundled with the force, energy bound and blowup of Theorem 1.1.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-10.2": {
         "lean": [
-          "NavierStokes.PeriodicResidualLimits.boundaryLimits_locallyUniform"
+          "NavierStokes.PeriodicResidualLimits.localizedResidual_locallyUniform",
+          "NavierStokes.PeriodicResidualLimits.boundaryLimits_smooth",
+          "NavierStokes.PeriodicResidualLimits.extendedJets_compatible",
+          "NavierStokes.PeriodicResidualLimits.boundaryLimits_zero"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "Stated for the residual of the lattice-periodized, time-activated fields rather than the compactly supported f of (10.5), and conditional on vanishing jets of the original residual at (0, 1) and smooth one-sided extensions of the potential and pressure away from the origin. The convergence is locally uniform rather than uniform on R³, and the limits are periodic, so F_j ∈ C_c^∞ with support in K is not stated; smoothness, compatibility and vanishing at the origin of the limits are stated.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-10.3": {
         "lean": [
-          "NavierStokesR3.ActualCandidate.of_localized_fields"
+          "NavierStokesR3.ActualCandidate.of_localized_fields",
+          "NavierStokesR3.PositiveTimeForce.force_tsupport_subset",
+          "NavierStokes.CandidateFromLimits.exists_candidate_force"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "The force is smooth, compactly supported in t > 0 and equals the residual for 0 < t < 1, but its support is contained in [1/16, 21/16] × 2K (the doubled cylinder) rather than K × [0, 2]. The extension through t = 1 is done for the periodized residual (exists_candidate_force) and then cut off in space and time; of_localized_fields takes a periodic candidate as hypothesis.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-10.4": {
         "lean": [
-          "NavierStokesR3.CompactEnergy.candidate_energy_estimates"
+          "NavierStokesR3.CompactEnergy.candidate_energy_estimates",
+          "NavierStokesR3.CompactEnergy.uniform_finite_energy"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "candidate_energy_estimates states F(1) < ∞, (10.13) with factor 2ν, and finite dissipation on [0, 1), for any viscosity and any candidate; its candidate hypothesis includes a uniform energy bound, which uniform_finite_energy derives from the equation for smooth compactly supported fields with zero datum.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
@@ -49,70 +76,103 @@
         "lean": [
           "NavierStokesR3.WholeSpaceUniqueness.candidate_unique_on_Icc"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Stated for any candidate u rather than only the localized velocity; v is required to be smooth on [0, T], divergence-free and to solve the equation on 0 < t < T, with zero datum and a uniform L² bound on [0, T], and no condition on the pressure.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "corollary-10.6": {
         "lean": [
-          "NavierStokes.Comparator.navier_stokes_breakdown_periodic",
-          "NavierStokes.PeriodicPaper.periodic_corollary"
+          "NavierStokes.PeriodicPaper.periodic_corollary",
+          "NavierStokes.Comparator.navier_stokes_breakdown_periodic"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "periodic_corollary carries the whole corollary on unit-periodic lifts: a smooth periodic force vanishing for t ≤ 0 and after a finite time, fields smooth on [0, 1) with support in a compact subset of the open cube, unbounded speed near t = 1, and no global smooth periodic solution for the same datum and force (uniqueness of the maximal solution is not stated). The project's Comparator declaration navier_stokes_breakdown_periodic carries only the non-existence, in Fefferman's alternative (D) form, with a force that has polynomial time decay rather than compact time support.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-4.1": {
         "lean": [
-          "NavierStokes.SimilarityProfile.partialT_pullback"
+          "NavierStokes.SimilarityProfile.partialT_pullback",
+          "NavierStokes.SimilarityProfile.partialZ_pullback"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Split into the time-derivative identity and the axial-derivative identity; each assumes only differentiability of f at the point, for t < 1 and 0 < h < 1/2.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-4.2": {
         "lean": [
-          "NavierStokes.LeadingStress.navierStokesResidual_tangential"
+          "NavierStokes.LeadingStress.navierStokesResidual_tangential",
+          "NavierStokes.LeadingStress.theta_eq_lag_minus_slope",
+          "NavierStokes.LeadingStress.axial_eq_lag_plus_slope"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "The residual identities are stated at r > 0, with the stress coefficients identified with the components of F(p_s − s). The equations (4.13) for vanishing stress are not stated as a consequence; only the scalar substitutions behind them appear (StressAlgebra.stressFree_angular_lag_algebra, stressFree_axial_lag_algebra).",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-4.3": {
         "lean": [
-          "NavierStokes.ProfileHistories.Profiles.angularLag_integrated"
+          "NavierStokes.ProfileHistories.Profiles.angularLag_integrated",
+          "NavierStokes.ProfileHistories.Profiles.axialLag_integrated"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Split into the Q_s formula (for X ≠ 0, H ≠ 0) and the N_s formula (for X > 0) of (4.16).",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-4.4": {
         "lean": [
-          "NavierStokes.SeedHandbackJets.profile_comparison_norm"
+          "NavierStokes.SeedHandbackJets.profile_comparison_norm",
+          "NavierStokes.ActivationStocks.profiles_stocks_congr",
+          "NavierStokes.FirstOrderBaseEdge.history_equal_after"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "Part (ii), the estimate (4.17), is stated. Part (i) appears only in pieces: equal fields and histories give equal p_s at a point, and equality of the I-integral propagates beyond X_h; the conclusions for m, Π, V0, a, b_s and T0 are not stated.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-4.5": {
         "lean": [
+          "NavierStokes.SeedConePaper.admissible_iff",
           "NavierStokes.SeedConePaper.compact_large_lag_with_admissibility"
         ],
-        "at": "2026-10-19T00:00:00+00:00",
-        "by": "Christian Garry (drafted with Claude Code)"
-      },
-      "theorem-4.6": {
-        "lean": [
-          "NavierStokes.LeadingStressWeights.exists_weighted_profile"
-        ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Split into the equivalence with (4.22) for v_s > 2 and the compact large-p_s,1 threshold for the relaxed and admissible cones.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-4.7": {
         "lean": [
-          "NavierStokes.PowerMomentMatrix.bumpMomentMatrix_det_ne_zero"
+          "NavierStokes.PowerMomentMatrix.bumpMomentMatrix_det_ne_zero",
+          "NavierStokes.SmoothPowerMomentMatrix.Family.compact_inverse_jets_bound",
+          "NavierStokes.ClosedIntervalMomentRepair.Data.exists_smooth_same_branch",
+          "NavierStokes.ClosedIntervalMomentRepair.Data.linear_solution"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Split into invertibility of B (continuous bumps suffice), bounds on the inverse and its parameter derivatives over a compact family, the quadratic solve under 8ν_j² q_j ‖d‖_Cj ≤ 1 with uniqueness in the C⁰ ball, and the linear case c = B⁻¹d.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-4.9": {
         "lean": [
-          "NavierStokes.TerminalHistoryBridge.forward_stresses_eq_profile"
+          "NavierStokes.TerminalHistoryBridge.forward_stresses_eq_profile",
+          "NavierStokes.TerminalCone.profile_full_true_cone",
+          "NavierStokes.TerminalEdgeFactor.angularStress_factorization",
+          "NavierStokes.LeadingStressWeights.stress_zero_after"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "Stated for the constructed profile itself, not for any regular leading field that agrees with the family for X ≥ X_tail and satisfies the moment identities. The backward-integral stresses, the cone on the switched interval, the angular factorization of (4.32) and T0 = 0 for X ≥ X_b are stated; b_s = 0, 2 + h < a ≤ 2 + 2h, the margin κ_o and the axial factorization are not stated in this form.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
@@ -120,48 +180,68 @@
         "lean": [
           "NavierStokes.TrueConeLoopPaper.exists_local_family_with_margin"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Stated for a compact parameter set K, with a compact set B on which v_s > 2, and inputs smooth on an open neighbourhood of K; the output C corresponds to −b_L. The uniform margin is on (a_L, v − 2, P_c − 2, U(P_c, J_c) − v) instead of the four components of Ψ in (4.35), and the module lies outside the headline theorem's import closure.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-5.1": {
         "lean": [
-          "NavierStokes.SlowRecursion.exists_local_slow_hierarchy"
+          "NavierStokes.SlowRecursion.exists_local_slow_hierarchy",
+          "NavierStokes.PositiveAxisDifferential.positive_solution_unique"
         ],
-        "at": "2026-10-19T00:00:00+00:00",
-        "by": "Christian Garry (drafted with Claude Code)"
-      },
-      "lemma-5.2": {
-        "lean": [
-          "NavierStokes.GlobalSlowProfiles.exists_step"
-        ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "Existence for every positive order on one radial core and one complex parameter neighbourhood, with zero axis values, is exists_local_slow_hierarchy; uniqueness is stated for the first-order system (5.7) among solutions holomorphic in η with zero axis data. The clause that the stress cone inequalities hold with a uniform positive margin on 0 ≤ ξ ≤ a has no counterpart.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-5.3": {
         "lean": [
-          "NavierStokes.BaseResidual.finite_error_rate"
+          "NavierStokes.BaseResidual.finite_error_rate",
+          "NavierStokes.FinalSlowBase.finiteIdentities",
+          "NavierStokes.SlowExpansionResidual.divergence_slowVelocity_eq_zero"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "The bound |F_slow(U[N])|_m ≤ C q^{2h(N+1)−K_m}, with K_m = 2 + 2h + m, is stated along approach filters q → 0 (one constant per approach), not uniformly for 0 < q ≤ 1. The constructed sequence enters through the finite-identity hypothesis, which FinalSlowBase.finiteIdentities states for the constructed profiles.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-5.4": {
         "lean": [
-          "NavierStokes.SlowBorelBase.exists_base_fields"
+          "NavierStokes.SlowBorelBase.exists_base_fields",
+          "NavierStokes.SlowBorelBase.ordinary_tail_bound",
+          "NavierStokes.BaseResidual.baseResidual_jetRate_axis"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "Stated only for the slow-base coefficient sequence (g_j = 2jh), not for a general tuple and differential polynomial under (5.28)–(5.33). The tail bound is (1/2)^J q^{h(J+1)−m} in the (q, profile) chart for m ≤ J + 3 and 0 < q ≤ 1, the flatness (5.36) is stated along approach filters, and zero extension across q = q0 is not stated.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-5.5": {
         "lean": [
-          "NavierStokes.FinalSlowBase.exists_final_base"
+          "NavierStokes.FinalSlowBase.exists_final_base",
+          "NavierStokes.SlowBorelBase.normalized_tangential_bounds",
+          "NavierStokes.BaseRankPatch.normalized_mean_fields"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "(5.43) is stated only in its weaker form, with C q^h ζ δ^{−N} on the right; of (5.42) only the swirl and axial estimates are stated, and (5.44) for those two components. Not stated in these declarations: the two radial-velocity estimates in (5.42), continuous extension of derivatives to η = ±1, and vanishing of the positive-order corrections for X ≥ X+.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-6.1": {
         "lean": [
-          "NavierStokes.SlotColoring.physical_labels_have_auxiliary_slots"
+          "NavierStokes.SlotColoring.physical_labels_have_auxiliary_slots",
+          "NavierStokes.PhysicalWaveSum.labelRegion_adjacency",
+          "NavierStokes.SlotGeometry.exists_oriented_slots"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into disjointness of the enlarged lifted rectangles for adjacent labels, the fact that distinct labels whose closed slow supports meet are adjacent, and injectivity of the enlarged rectangles under the coverings. The disjointness and injectivity statements choose their radii separately; the smaller radius serves both.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
@@ -169,146 +249,269 @@
         "lean": [
           "NavierStokes.LabelCounting.number_of_relevant_labels_restrict"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "One declaration states all three counts, for any fixed box enlargement and any label subfamily Γ; its module lies outside the headline theorem's import closure.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "definition-6.4": {
         "lean": [
-          "NavierStokes.WeightedClasses.MeanClass"
+          "NavierStokes.WeightedClasses.MeanClass",
+          "NavierStokes.WeightedClasses.UnweightedClass"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "MeanClass is the bound (6.24) on an abstract strip domain, with the powers of S∗ and δ^{−1} merged into one degree, and UnweightedClass plays the role of S_α in (6.25). Descent to common tori with (6.20), ∂θ f = 0 and smooth zero extension outside the shell are not part of these definitions.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "definition-6.5": {
         "lean": [
+          "NavierStokes.LabelSumBounds.UniformWaveClass",
           "NavierStokes.WeightedClasses.WaveClass"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "The bound (6.29) with weight √ζ·P, uniform over labels in UniformWaveClass, on an abstract strip domain with an arbitrary envelope P. Not part of these definitions: agreement of local formulas across lifts, (6.20), ∂θ a = 0, supp(a|E_γ) ⊂ Ω_γ and smooth zero extension.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-6.6": {
         "lean": [
-          "NavierStokes.WeightedClasses.MeanClass.bilinear"
+          "NavierStokes.WeightedClasses.MeanClass.bilinear",
+          "NavierStokes.WeightedClasses.MeanClass.bilinear_wave",
+          "NavierStokes.WeightedClasses.WaveClass.bilinear_mean",
+          "NavierStokes.WeightedClasses.MemClass.add",
+          "NavierStokes.WeightedClasses.MemClass.graphDerivative"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "Generic lemmas give M_α M_β ⊂ M_{α+β} and M_α W_β ⊂ W_{α+β} (for ζ ≤ 1), products of two waves in M_{α+β}, closure under sums, and a graph derivative such as D_r losing κ. Not stated: the case m + m′ ≠ 0 of (6.31), vanishing of products of waves with distinct labels, preservation of (6.20), and the rows of (6.32) for D_z, −ε∂_T and c_{i0}N_{i0}.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-7.1": {
         "lean": [
-          "NavierStokes.BasePhaseGeometry.FamilyData.construction"
+          "NavierStokes.BasePhaseGeometry.FamilyData.construction",
+          "NavierStokes.BasePhaseGeometry.FamilyData.phase_estimates",
+          "NavierStokes.BasePhaseGeometry.FamilyData.modal_errors",
+          "NavierStokes.BasePhaseGeometry.FamilyData.damping_error"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "The phase-normal comparison, the four modal errors |E_ab| ≤ C/S∗ about diag(λ, −λ), and |d − d_ref| ≤ C/S∗ hold under one band threshold common to all labels, with (7.10) stated as bounds on scalar modal coefficients rather than through a named left inverse B^ℓ. Not stated in these declarations: E_ik = O(εS∗^C), single-valuedness of e^{ikmΦ}, and the polynomial bounds on mixed derivatives.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-7.2": {
         "lean": [
-          "NavierStokes.ParticularWaveBounds.copySolve_waveClass"
+          "NavierStokes.ParticularWaveBounds.copySolve_waveClass",
+          "NavierStokes.ParticularWaveBounds.copySolve_principal",
+          "NavierStokes.ParticularWaveBounds.pressure_class",
+          "NavierStokes.ParticularWaveBounds.copyVelocity_tangent"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "The zero-data solution along the copy path lies in W_α, satisfies (7.5) with the pressure (7.13), keeps n_Φ · t_m = 0, and its pressure gains ε^{1/2}; hypotheses are abstract energy and jet bounds on coefficient and source. Not stated: uniqueness, descent to the common torus H, independence of q∗ from M, α and the stage, and (within the headline closure) the one-sided derivatives at τ = 0.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-7.4": {
         "lean": [
-          "NavierStokes.PrimaryODE.primary_bounds"
+          "NavierStokes.PrimaryODE.primary_bounds",
+          "NavierStokes.PrimaryODE.primary_gaussian_bounds",
+          "NavierStokes.PrimaryPulseBounds.fundamental_envelope_jets",
+          "NavierStokes.PrimaryCopyBounds.projectedPressure_jets"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the bounds cP ≤ x ≤ CP and y/x = c0√(1 + s²) + O(S∗^{−1}) (the eigenvector is c0√(1 + s²) in primary_gaussian_bounds), the derivative bounds C_I S∗^{b_I} P, and the factor ε^{1/2} in the homogeneous pressure. Hypotheses are the coefficient estimates of Lemma 7.1 rather than the label phases.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-7.5": {
         "lean": [
-          "NavierStokes.PartitionedCovariance.PairData.diagonal_pair_reconstruct"
+          "NavierStokes.PartitionedCovariance.PairData.diagonal_pair_reconstruct",
+          "NavierStokes.PartitionedCovariance.compact_actual_pair_strictCone",
+          "NavierStokes.PrimaryPulseBounds.covariance_weights_class",
+          "NavierStokes.PrimaryPulseBounds.primaryCoefficient_waveClass"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "Positivity of H^{−1}T0,∗ after one slot-length threshold, the covariance identity (7.26) (stated with the factor η_β² and a scale factor), the derivative bounds on y and the W_{1/2} class are separate declarations. The lower bound y_σ ≥ c√S∗ ζ in (7.25) is not stated as a conclusion (it enters as a hypothesis), nor is smooth zero extension of a_σ at the shell edges.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-7.6": {
         "lean": [
-          "NavierStokes.SignedCovariance.physical_signed_cross_covariance"
+          "NavierStokes.SignedCovariance.cross_reconstruct",
+          "NavierStokes.SignedCovariance.physical_signed_cross_covariance",
+          "NavierStokes.SignedCovariance.increment_wave_class",
+          "NavierStokes.SignedCovariance.signed_square_class"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "B(W0, LΣ) = Σ is stated per box in the algebraic form H(2a ⊙ δa) = R and for the waves assembled over all boxes; the class statements assume mean-class bounds on (H^{−1}Σ)_j and a lower bound on (H^{−1}T)_j rather than Σ ∈ M_α. Smooth zero extension at the shell edges is not stated.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-7.7": {
         "lean": [
-          "NavierStokes.CurlClassBounds.cylindricalCurl_vectorPotential"
+          "NavierStokes.CurlClassBounds.cylindricalCurl_vectorPotential",
+          "NavierStokes.CurlClassBounds.realizedCoefficient_divergence",
+          "NavierStokes.CurlClassBounds.curlRemainder_waveClass",
+          "NavierStokes.CurlClassBounds.longitudinal_from_curl_class"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "curl∗ A_m = (t_m + r_m)e^{ikmΦ}, exact divergence-freeness, r_m ∈ W_{α+1/2−κ}, and n_Φ · a_m ∈ W_{α+1/2−κ} via (7.39) are stated. Not stated: C_m ∈ W_{α+1/2}, and smooth zero extension of potential and velocity (only support inclusions are given).",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "corollary-7.8": {
         "lean": [
-          "NavierStokes.CorrectionStep.signedTensorRemainder_mem"
+          "NavierStokes.CorrectionStep.signedTensorRemainder_exact",
+          "NavierStokes.CorrectionStep.signedTensorRemainder_mem",
+          "NavierStokes.CorrectionStep.signedTensorRemainder_divergence_mem",
+          "NavierStokes.SignedCovariance.physical_signed_cross_covariance"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "The three remainders of (7.41) are bounded together in one class of exponent γ ≤ min(δ + β, α + η, 2β) rather than each in its own class of (7.42), and the radial-divergence clause is stated only for fixed exponents (σ ≥ 1/5, κ ≤ 10^{−5}). The leading term Σ comes from the separate cross-covariance identity.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-8.1": {
         "lean": [
-          "NavierStokes.MeanResidual.exact_mean_balances"
+          "NavierStokes.MeanResidual.exact_mean_balances",
+          "NavierStokes.MeanResidual.retain_base_error",
+          "NavierStokes.LiftedMeanResidual.angularMean_fullResidual"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Stated in physical cylindrical variables (unit viscosity, no chart normalization): the angular mean of the residual minus the base residual and the stress divergences equals (Dr pm − gr, Eθ, Ez) with the fluxes of (8.3); retain_base_error re-adds the base error as a separate additive term, and angularMean_fullResidual is the chart-normalized form used by the iteration.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-8.2": {
         "lean": [
-          "NavierStokes.FourierAlias.cutoffAlias_superflat_of_integratedMean_zero"
+          "NavierStokes.RadialPullback.physicalGraphDeriv_physicalCompact",
+          "NavierStokes.VariableGaugeMean.meanClass_compactPrimitive",
+          "NavierStokes.VariableGaugeMean.compactPrimitive_supportedGauge",
+          "NavierStokes.VariableGaugeMean.compactPrimitive_fiberLocal",
+          "NavierStokes.PressureStream.torusAverage_physicalAlias",
+          "NavierStokes.GaugeAliasDecay.meanClass_compactAlias_superflat",
+          "NavierStokes.MeanRankUpdate.slow_physicalAlias_zero"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the exact identity D Ic f = f − (cutoff remainder) in the physical radial variable, preservation of Mα, shell support and fiber locality (support in the (Z,T) projection), the auxiliary mean of the remainder as a multiple of the radial integral of ⟨f⟩Y, membership of the remainder in every class Mβ under zero integral (stronger than (8.8)), and zero remainder for Y-independent sources. The weight Re enters by applying these to Re f (e.g. the weighted source for e = 1) rather than through one statement indexed by e ∈ {0,1,2}.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-8.3": {
         "lean": [
-          "NavierStokes.PressureStream.meanPressure_radial_residual_global"
+          "NavierStokes.PressureStream.meanPressure_radial_residual_global",
+          "NavierStokes.PressureStream.meanPressure_bar_hasDerivAt",
+          "NavierStokes.MeanMomentBounds.meanClass_pressureMass",
+          "NavierStokes.VariableGaugeMean.meanClass_meanPressure",
+          "NavierStokes.PressureStream.stream_divergence_zero",
+          "NavierStokes.PressureStream.streamGamma_eq_desired_sub_alias_global",
+          "NavierStokes.PressureStream.streamGamma_bar_eq_desired",
+          "NavierStokes.MeanRankUpdate.slow_streamGamma_eq_desired"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "Both identities of (8.13), P ∈ Sα, pm ∈ Mα, the divergence-free stream increment with ∆γ = γd − (cutoff remainder)/r, ⟨∆γ⟩Y = ⟨γd⟩Y and ∆γ = γd for Y-independent γd are stated in physical variables. The clause ∆β ∈ Mα+1 for a general γd ∈ Mα has no counterpart: the class gain is stated for the temporal-update source (VariableGaugeMean.meanClass_scaledTemporalStreamBeta), not for an arbitrary γd.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-8.4": {
         "lean": [
-          "NavierStokes.IntegratedMeanBalances.integrated_axial_constructed_pressure"
+          "NavierStokes.IntegratedMeanBalances.integrated_angular_balance",
+          "NavierStokes.IntegratedMeanBalances.integrated_axial_constructed_pressure",
+          "NavierStokes.IntegratedMeanBalances.constructed_pressure_moment"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the angular identity ∫R²⟨Eθ⟩Y dR = ε∂Z Jθ and the axial identity ∫R⟨Ez⟩Y dR = ε∂Z(Jz + cρP) with the pressure from the compact primitive (8.12), plus the pressure-moment computation; the balances take the averaged fluxes as general shell-supported inputs, of which (8.3) and (8.15) are the instance.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "corollary-8.5": {
         "lean": [
-          "NavierStokes.SignedStressPrimitive.angular_divergence"
+          "NavierStokes.SignedStressPrimitive.angular_divergence",
+          "NavierStokes.SignedStressPrimitive.axial_divergence",
+          "NavierStokes.SignedStressPrimitive.angular_bump_identity",
+          "NavierStokes.SignedStressPrimitive.axial_bump_constructed_pressure_identity"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the divergence identities (Dr + 2/R)σ = −(source − bump·moment) and (Dr + 1/R)σ = −(source − bump·moment) for the compact primitive σ of a smooth shell-supported mean source, and the bump identities that identify the removed moments with ε∂Z Jθ and ε∂Z(Jz + cρP); σ acts on mean fields at a fixed slow point, which gives the auxiliary independence and the Z-support clause.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-8.6": {
         "lean": [
-          "NavierStokes.SmoothFamilyTorusInverse.inverse_finiteJets"
+          "NavierStokes.SmoothFamilyTorusInverse.inverse_finiteJets",
+          "NavierStokes.SmoothFamilyTorusInverse.inverse_solves",
+          "NavierStokes.TemporalMeanUpdate.timeDerivative_unique",
+          "NavierStokes.TemporalMeanUpdate.temporal_mean_update",
+          "NavierStokes.TemporalMeanUpdate.meanClass_desiredIncrement"
         ],
+        "coverage": "changed",
+        "confidence": "high",
+        "note": "The derivative loss differs: (8.19) states ‖N⁻¹F‖_{C^m_y} ≤ C_m‖F‖_{C^{m+4}_y}, while inverse_finiteJets states JetBound f S (n + 5) C → JetBound (inverse d f) S n (K * C), i.e. bounds on all derivatives of order ≤ n+5 (parameter and torus jointly) give bounds of order ≤ n, a loss of five derivatives rather than four. The solution, its zero mean, uniqueness per torus slice, the Mα class of the increments and the update (8.20)–(8.22) are stated by the other declarations.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-8.7": {
         "lean": [
-          "NavierStokes.FiveRowRank.five_rows_on_patch"
+          "NavierStokes.FiveRowRank.five_rows_on_patch",
+          "NavierStokes.MeanRankUpdate.physical_five_rows",
+          "NavierStokes.MeanRankUpdate.rank_update_meanClass",
+          "NavierStokes.MeanRankUpdate.slow_streamGamma_eq_desired"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "Existence of increments satisfying all five rows of (8.25), linear in the targets, the Sα → Mα bound and ∆γ = γd exactly are stated; uniqueness of the linear combination has no counterpart. The background is taken as V = C·R^(−1−2λ) with C ≠ 0 and G = 0 on the patch, in place of |a(η)| ≥ a0 > 0.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-8.8": {
         "lean": [
-          "NavierStokes.DefectIncrementBounds.rankStage_defect_class"
+          "NavierStokes.DefectIncrementBounds.rankStage_defect_class",
+          "NavierStokes.DefectIncrementBounds.RankGeometry.debt_eq_remainders",
+          "NavierStokes.DefectIncrementBounds.actualRadialError_eq_formula",
+          "NavierStokes.MeanIncrementBounds.radialRemainder_mem"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "The class conclusion (exponent H + 9/10 − 2κ for the three new defects, Rg likewise) is stated under the hypothesis that the increment itself has radial part in M_{H+1} and tangential parts in M_H (IncrementBounds), with base bounds on the whole strip, rather than under targets in Sα and base bounds on the potential's support. The exact formulas (8.26)–(8.27) are debt_eq_remainders and actualRadialError_eq_formula.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-9.1": {
         "lean": [
-          "NavierStokes.LinearWaveBounds.constructed_linear_wave_with_flat_error"
+          "NavierStokes.LinearWaveBounds.constructed_linear_wave_with_flat_error",
+          "NavierStokes.LinearWaveBounds.excludedSlotError_carrier_physical_bound"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "The residual conclusion (good part in W^{α+1/2−3κ} plus a pulse-cutoff error that is flat, also after multiplication by the carrier in physical variables) is stated, but πm ∈ W^{α+1/2} and the amplitude class W^α are hypotheses (InputBounds.pressure, InputBounds.amplitude) rather than conclusions. The homogeneous case is the instance source = 0.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-9.2": {
         "lean": [
-          "NavierStokes.WaveInteractionBounds.wave_mean_bound"
+          "NavierStokes.WaveInteractionBounds.wave_mean_bound",
+          "NavierStokes.WaveInteractionBounds.same_label_curl_interaction",
+          "NavierStokes.WaveInteractionBounds.slot_curl_transport_zero"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "Mean–wave cross-advection in W^{α+µ−1/2}, same-label transport in W^{α+α'−κ} (for each ordered transport; the symmetric sum is their sum) and zero products for distinct labels are stated. The clause that the zero harmonic of a same-label product lies in M^{α+α'−κs} has no counterpart.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
@@ -316,6 +519,9 @@
         "lean": [
           "NavierStokes.CorrectionStep.CycleAnalyticInvariant"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "Carries (9.8)–(9.10) with a real σ in place of the stage j (σ_j = 1/5 + j/10), defects in an unweighted slow class for S, and additional fields (wave pressure in W^1, covariance in M^1, smoothness, periodicity, support and representation data), so it defines a narrower notion than Definition 9.4.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
@@ -323,6 +529,9 @@
         "lean": [
           "NavierStokes.ActualInitialization.initial_invariant"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "The initialized state (primary curls, then the temporal and five-row mean updates) satisfies CycleAnalyticInvariant at σ = 1/5, i.e. B0 = 1/2 + 1/5 = 0.7 and C0* = 1 + 1/5 = 1.2.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
@@ -330,27 +539,43 @@
         "lean": [
           "NavierStokes.ActualCyclePreservation.next_runInvariant"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "Stated for the fixed construction with stronger hypotheses: RunInvariant (the cycle invariant plus chart coherence and torus periodicity) at σ ≥ 1/5 and the band threshold geometricThreshold ≤ N0; the conclusion is RunInvariant at σ + 1/10 for the step CycleState.step, which fixes the order of the four corrections.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-9.8": {
         "lean": [
-          "NavierStokes.ActualCandidateAssembly.estimates"
+          "NavierStokes.ActualCandidateAssembly.estimates",
+          "NavierStokes.MixedCandidateAssembly.StageEstimates"
         ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "Stage bounds C_{j,m}(1+|log q|)^{p_{j,m}} q^{g_j − L_m} are stated for the potentials, direct fields and pressures, but the partial-sum velocity bound and the residual bound (9.18) are stated only eventually near the endpoint (1,0) (rates q^{−backgroundLoss m} and q^{gain J − residualLoss m}), not on all of 0 < q < qbig, and no bound is stated for the partial-sum pressure.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-9.9": {
         "lean": [
-          "NavierStokes.LocalPaper.local_theorem"
+          "NavierStokes.LocalPaper.local_theorem",
+          "NavierStokes.LocalPaper.properties_of_schedule"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "local_theorem states the existence of fields with every clause of the local theorem as encoded in Properties (smoothness for t < 1, u = curl A + D, div u = 0, endpoint extensions and jet bounds, all-order residual flatness, exact heat exterior, angular growth); properties_of_schedule shows the fields are the sums of the finite corrections. The module is not imported by the headline theorem.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-A.1": {
         "lean": [
-          "NavierStokes.PowerMomentMatrix.bumpMomentMatrix_det_ne_zero"
+          "NavierStokes.PowerMomentMatrix.bumpMomentMatrix_det_ne_zero",
+          "NavierStokes.ExponentialMomentMatrix.expBumpMomentMatrix_det_ne_zero",
+          "NavierStokes.SmoothPowerMomentMatrix.Family.compact_inverse_jet_bound"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Split into the power-weight invertibility, the exponential (logarithmic-coordinate) version, and bounded parameter derivatives of the inverse on a compact set; the bumps need only be continuous and supported in [l_j, u_j] with u_i < l_j for i < j.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
@@ -358,118 +583,237 @@
         "lean": [
           "NavierStokes.ClosedIntervalMomentRepair.Data.exists_smooth_same_branch"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Under 8β0²κ0d0 ≤ 1 it gives a smooth solution with ‖c‖_{C0} ≤ 2β0d0, uniqueness among continuous solutions in that ball, convergence of the iteration from zero, and ‖c‖_{Ck} ≤ 2βk‖d‖_{Ck} whenever 8βk²κk‖d‖_{Ck} ≤ 1; with Q = 0 the smallness condition holds automatically.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "corollary-A.3": {
         "lean": [
-          "NavierStokes.FiveProfileMoments.physicalMoments_hasFDerivAt_zero"
+          "NavierStokes.FiveProfileMoments.physicalMoments_hasFDerivAt_zero",
+          "NavierStokes.FiveProfileMoments.normalizedMap_identity",
+          "NavierStokes.FiveProfileMoments.physicalMoments_eq"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "Invertibility of the Jacobian of the five moments (M, I, J, S, Cp) for U = G constant, E = A·x^b with A ≠ 0 and b ∉ {−1/2, 1/2, 3/2}, two U bumps and three E bumps, and the exact linear-plus-quadratic form (A.2), are stated. The normalizing factors (A.4) under X = ρx and the assertion that at U0 = 0 the three E corrections prescribe (I, S, Cp) while preserving M, J have no counterpart.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-A.4": {
         "lean": [
-          "NavierStokes.OutgoingProfile.exists_outgoing_profile"
+          "NavierStokes.OutgoingProfile.exists_outgoing_profile",
+          "NavierStokes.OutgoingCone.exists_ordered_profile_cone",
+          "NavierStokes.OutgoingNegativeSlopeCone.exists_ordered_full_profile_cone",
+          "NavierStokes.ReservedPatches.clean_fields",
+          "NavierStokes.ReservedPatches.windows_disjoint"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the profile with its smoothness, E > 0, moment identities (A.8), U = M = J = 0 after the pulse and E = Epow after the terminal interval; the relaxed cone from log x− ≤ 0 through tail coordinate 1/2 and the admissible cone from the hold start for large XR (extended back to where l < 0 by the third declaration); and the four disjoint reserved patches with U = 0 and E a positive multiple of f X^(−1/2−λ). The independence of stage boundaries from XR and η holds by construction (boundaries are fixed logarithmic times, XR enters only through log(X/XR)).",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-A.5": {
         "lean": [
-          "NavierStokes.SchedulePressure.axisPressure_lower_bound"
+          "NavierStokes.SchedulePressure.axisPressure_lower_bound",
+          "NavierStokes.SchedulePressure.complexAxisPressure_analytic",
+          "NavierStokes.SchedulePressure.axisPressure_even",
+          "NavierStokes.SchedulePressure.axisPressure_deriv_pos",
+          "NavierStokes.SchedulePressure.axisPressure_deriv_neg",
+          "NavierStokes.SchedulePressure.axisPressure_radius_independent",
+          "NavierStokes.OutgoingProfile.Specification"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Split into the bound Π0(η) ≤ −(5/2) P∗² f(η)², analyticity of a complex extension on the strip |Im z| < 1/2, evenness, the sign of Π0′ for η > 0 and η < 0, XR-independence, and (A.23) as the pressure_canonical field of the profile specification (written as −(1/2)∫_X^∞ E(u)²/u du in the radial variable).",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-A.6": {
         "lean": [
-          "NavierStokes.RadialHeatProfile.scaled_forward_radial_heat_equation"
+          "NavierStokes.RadialHeatProfile.scaled_forward_radial_heat_equation",
+          "NavierStokes.RadialHeatProfile.profile_pos",
+          "NavierStokes.RadialHeatProfile.profile_contDiffOn",
+          "NavierStokes.RadialHeatProfile.profile_derivative_bound",
+          "NavierStokes.RadialHeatProfile.scaled_radialProfile_derivative_neg",
+          "NavierStokes.ParametricHeatTail.physicalEdit_joint_contDiffOn"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Split into the heat equation ∂t K = (∂rr + r^−1 ∂r − r^−2)K for K = C s^(−A) H(2τ/s), positivity and smoothness of H on [0, ∞) with derivative bounds (uniform on the whole half-line), K_r < 0 for τ > 0, and joint smoothness of the heat-switched profile on X > 0, η ∈ [−1, 1]. K is z-independent by construction.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-A.7": {
         "lean": [
-          "NavierStokes.HeatSwitchCone.exists_compensated_true_cone"
+          "NavierStokes.HeatSwitchCone.exists_compensated_true_cone",
+          "NavierStokes.HeatedOutgoing.CompensationWitness.specification",
+          "NavierStokes.ReservedPatches.heat_left"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the strict admissible cone for the compensated profile on the window from the hold start through tail coordinate 1/2 for all large XR, and the specification of every compensated profile (E > 0, M and J unchanged, S(∞) = 0, ∫(H − Hpow) dX = 0, axis datum unchanged, fields and pressure unchanged before the patch); the third declaration identifies the compensation patch with the second reserved patch. The cone window starts earlier than the paper's patch.",
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "lemma-A.8": {
+        "lean": [
+          "NavierStokes.TerminalHistoryBridge.physical_forwardTheta_eq_terminal",
+          "NavierStokes.TerminalHistoryBridge.physical_forwardAxial_eq_terminal",
+          "NavierStokes.LeadingStressWeights.stress_zero_after"
+        ],
+        "coverage": "changed",
+        "confidence": "medium",
+        "note": "The backward formulas (A.46) are stated for the constructed heat-compensated profile (any compensation witness) where the switch is fully on, and the vanishing for X ≥ Xb for the final modulated profile, not for an arbitrary field smooth at the axis with U = 0, the heat tail and the exact moment conditions.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-A.9": {
         "lean": [
-          "NavierStokes.ParametricFlatFactor.exists_joint_smooth_factor"
+          "NavierStokes.ParametricFlatFactor.exists_joint_smooth_factor",
+          "NavierStokes.FlatPrimitiveFactor.exists_smooth_factor_original"
         ],
+        "coverage": "changed",
+        "confidence": "high",
+        "note": "The coefficient b is assumed smooth on all of E × ℝ, where the paper assumes smoothness only for 0 ≤ u ≤ δ0 and η in a compact K; otherwise (A.47) holds with F = B/2, F(p,0) = b(p,0)/(2c), F jointly smooth, and parameters in any finite-dimensional space.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-A.10": {
         "lean": [
-          "NavierStokes.TerminalCone.profile_full_true_cone"
+          "NavierStokes.TerminalCone.profile_full_true_cone",
+          "NavierStokes.TerminalEdgeFactor.profileStress_factorization",
+          "NavierStokes.TerminalEdgeFactor.profile_uniform_cone",
+          "NavierStokes.TerminalEdgeFactor.profileStress_jets",
+          "NavierStokes.TerminalEdgeFactor.profileTilt_eq_ratio"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the admissible cone for 0 < δ ≤ 5/2 (i.e. .5 ≤ y < 3), the factorization T0 = (e^(−4/δ²)/δ³)(bθ, δ⁶ bz) with smooth coefficients, a uniform positive lower bound for bθ, a − 2 and 2 − (a − 2)(Tz/Tθ)² on an edge collar, the jet bounds of (A.51), and the ratio Tz/Tθ = δ⁶ bz/bθ. Stated for the backward terminal stress at normalization C = releasedNormalization d K with h small (SmallTail) and K ≥ 32; the lower bound |T0| ≥ c e^(−4/δ²) δ^(−3) follows from the factorization and the bθ bound rather than being stated.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-B.1": {
         "lean": [
-          "NavierStokes.AxisOperators.norm_inverseMixed_le"
+          "NavierStokes.AxisOperators.norm_inverseMixed_le",
+          "NavierStokes.AxisOperators.norm_product_le",
+          "NavierStokes.AxisOperators.norm_regularInverse_le",
+          "NavierStokes.AxisOperators.jet_regularInverse_succ",
+          "NavierStokes.AxisOperators.norm_average_le",
+          "NavierStokes.AxisOperators.norm_mulY_le",
+          "NavierStokes.AxisOperators.norm_primitive_le",
+          "NavierStokes.AxisOperators.norm_parameterPrimitive_le",
+          "NavierStokes.AxisOperators.norm_inverseParamProduct_le",
+          "NavierStokes.AxisOperators.norm_inverseDotProduct_le"
         ],
+        "coverage": "partial",
+        "confidence": "medium",
+        "note": "The variant of (B.6) with F replaced by A_X(F), and the rule allowing extra undifferentiated factors with one algebra constant each, have no counterpart. The other clauses are stated with explicit constants (64, 80, 80/ε, 5120/ε) for J_r with any r ≥ 1.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-B.2": {
         "lean": [
-          "NavierStokes.NaturalEntrance.exists_common_joint_analytic_profiles"
+          "NavierStokes.NaturalEntrance.exists_common_joint_analytic_profiles",
+          "NavierStokes.NaturalEntrance.CoefficientProfile",
+          "NavierStokes.NaturalProfile.ProfileFamily"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "The existence theorem gives Λ0, then for each Λ ≥ Λ0 a threshold for C, and a profile analytic on one open set containing [0, 4.1] × [−1, 1] for all such Λ, C; the two structures carry the equations with vanishing leading residual stress, Φ(0, η) = 1, u(0, η) = 0, and (B.13) as a bound jetBound·K/(2Λ) on every mixed derivative for |Y| ≤ R < 20. The axis data δ∗, σ∗ are constructed inside the theorem from an admissible pressure datum.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-B.3": {
         "lean": [
-          "NavierStokes.NaturalExitBounds.exists_exit"
+          "NavierStokes.NaturalExitBounds.exists_exit",
+          "NavierStokes.NaturalExitBounds.Estimates",
+          "NavierStokes.NaturalExitBounds.Estimates.regular_lag_bounds",
+          "NavierStokes.NaturalEntrance.ns_eq_scaled_regularAxialLag"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "Split into the existence theorem and its estimates (Φ > 1/8, Sq > .95 L Λ χ + 2.5, p1/X ≥ c1, 0 < p1 ≤ C1, |ns − Z∗/L| ≤ const/Λ, p1 + p2²/p1 > 2 + 1/4 at X = 4/Λ, parameter-jet bounds uniform in C), the same bounds written with XQs/L and Ns/L, and the identity ns = Ns/L. The constants are explicit: c0 = 1/8, c_ex = 1/4.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-B.4": {
         "lean": [
-          "NavierStokes.ReferenceBounds.exists_reference_bounds"
+          "NavierStokes.ReferenceBounds.exists_reference_bounds",
+          "NavierStokes.ReferenceBounds.ReferenceBoundsOnHold",
+          "NavierStokes.AppendixJoiningResults.reference_first_gt_three",
+          "NavierStokes.ReferenceUniformStocks.uniform_reference_quantities"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the bounds of (B.23) on [0, 110] × [−1, 1] (Sq,r > .94 LΛχ + 2.4, l_r ≤ 1, p1,r > 0, vr > 9/4 for X ≥ 4/Λ, p1,r > 3 at X = 100), p1,r > 3 on all of [100, 110], and the parameter-norm bounds for CEr, its reciprocal, p1,r and ns,r uniform in C ≥ 1 and the cutoff width. The constant c is 1/4.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-B.5": {
         "lean": [
-          "NavierStokes.ActivationContinuation.exists_activation_continuation"
+          "NavierStokes.ActivationContinuation.exists_activation_continuation",
+          "NavierStokes.ActivationContinuation.ContinuationWitness",
+          "NavierStokes.ActivationCone.natural_activation_direction",
+          "NavierStokes.ActivationContinuation.RampParameters.final_shears",
+          "NavierStokes.TransitionRamp.physical_fields_natural",
+          "NavierStokes.TransitionRamp.physicalF_positive"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the continuation to X = 110 (admissible cone on a first collar, strict relaxed cone from the start radius to 110, p1 > 2 on the final hold), the factorization T0 = e_a·D with D smooth and its first component bounded below at the edge, a = 4/5 with zero axial shear on the final hold, and the fields being unchanged and positive up to X0.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-B.7": {
         "lean": [
-          "NavierStokes.ReferenceEndpointRate.exists_entrance_envelope"
+          "NavierStokes.ReferenceEndpointRate.exists_entrance_envelope",
+          "NavierStokes.ReferenceEndpointRate.endpointLog_eq_physical"
         ],
+        "coverage": "full",
+        "confidence": "high",
+        "note": "The envelope theorem states (B.32) for all derivative orders up to a given N, with Cnat chosen before Λ and B, Cjoin after Λ, uniformly in the amplitude and widths (ω_fin written as w1 + w2, t1 as T, κ0 as κ); the second declaration identifies endpointLog with log(C E(110, η)).",
+        "at": "2026-10-19T00:00:00+00:00",
+        "by": "Christian Garry (drafted with Claude Code)"
+      },
+      "proposition-B.8": {
+        "lean": [
+          "NavierStokes.NominalConeAssembly.exists_certificate",
+          "NavierStokes.NominalProfile.Witness.heat_agreement",
+          "NavierStokes.NominalProfile.Witness.moments_after",
+          "NavierStokes.RepairConeBounds.exists_repair_cone"
+        ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the nominal profile with the strict relaxed cone up to the matching point and beyond, equality of U, E and Π with the heat-compensated outer profile (equal to (A.7) for X ≤ XR) for X > XR e^(−5), equality of the five radial moment functions there, and the relaxed cone on the restore-and-repair interval [XR e^(−8), XR e^(−5)].",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "lemma-C.1": {
         "lean": [
-          "NavierStokes.TrueConeLoopPaper.exists_local_family_with_margin"
+          "NavierStokes.TrueConeLoopPaper.exists_local_family_with_margin",
+          "NavierStokes.TrueConeLoopPaper.uniform_boundary_collar"
         ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Stated in a general setting (a compact K in a finite-dimensional parameter space and a compact boundary set B), with the axial component written C = a·m (m = ts) so (C.1) reads ∫C dφ = a·m; one margin ε bounds the four cone gaps, and the second declaration gives the uniform collar width δ∂.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       },
       "proposition-C.2": {
         "lean": [
-          "NavierStokes.ModulatedCone.Repaired.exists_with_moment_repair"
+          "NavierStokes.ModulatedProfileAssembly.Witness",
+          "NavierStokes.ModulatedProfileAssembly.exists_modulated_profile",
+          "NavierStokes.ModulatedProfileAssembly.Witness.fields_outside",
+          "NavierStokes.ModulatedProfileAssembly.Witness.stocks_outside",
+          "NavierStokes.ModulatedProfileAssembly.Witness.positive_E",
+          "NavierStokes.ParametricModulation.realized_profiles_uniform_eta_jets"
         ],
-        "at": "2026-10-19T00:00:00+00:00",
-        "by": "Christian Garry (drafted with Claude Code)"
-      },
-      "proposition-C.3": {
-        "lean": [
-          "NavierStokes.LeadingStressWeights.exists_weighted_profile"
-        ],
+        "coverage": "full",
+        "confidence": "medium",
+        "note": "Split into the modulated and repaired profile (frequency N, repair coefficients on the first reserved patch, five radial moment functions equal beyond the patch, same axis pressure), the admissible cone on the whole active annulus, fields unchanged outside the modulation-to-patch interval, Qs and Ns unchanged there, E > 0, and O(1/N) bounds on profile values and η-derivatives of the modulated fields.",
         "at": "2026-10-19T00:00:00+00:00",
         "by": "Christian Garry (drafted with Claude Code)"
       }
