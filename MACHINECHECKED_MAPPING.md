@@ -2,6 +2,8 @@
 
 Each numbered statement of *Finite time blowup for Navier–Stokes* ([PDF](https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf), 166 pages, 8 September 2026) with the declarations of this repository at commit `f9e8bc5b38b6e212696e8a30e3e91517af887bbd` that state its clauses. The mapping is the auditor's reading of the paper and the Lean sources. What Lean establishes about each declaration is the audit's (`machinechecked check`); whether a declaration states the paper's claim is a reviewer's judgement, recorded on the Review page.
 
+Recorded statement reviews (`machinechecked-reviews/`, shown under each statement in the reader): Lemma 8.6, *narrower* (the Lean estimate loses n + 5 derivatives where (8.19) loses m + 4); Lemma 10.5, *broader* (the statement is established for every candidate; the printed pressure-flux step (10.19) is not checked). The other 75 linked statements have no recorded review.
+
 | Coverage | Meaning |
 |---|---|
 | Full | the declarations together state every clause, up to harmless reformulation |
