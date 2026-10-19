@@ -1,0 +1,158 @@
+{
+  "schema": "prooflens/review-reports@1",
+  "project": "navierstokesandeuler",
+  "release": "v-b85d296bd9c1",
+  "exported_at": "2026-10-19T15:42:59Z",
+  "reports": [
+    {
+      "schema": "prooflens/review-report@1",
+      "unit": {
+        "id": "link:lemma-10.5",
+        "kind": "link",
+        "name": "NavierStokesR3.WholeSpaceUniqueness.candidate_unique_on_Icc",
+        "lean": [
+          "NavierStokesR3.WholeSpaceUniqueness.candidate_unique_on_Icc"
+        ],
+        "claims": [
+          "P:lemma-10.5"
+        ],
+        "papers": [
+          "P"
+        ]
+      },
+      "pins": {
+        "release": "v-b85d296bd9c1",
+        "project_commit": "d1961e58748d9d2a13ff766b462ebfc40002e243",
+        "manuscripts": {
+          "P": "d1961e58748d9d2a13ff766b462ebfc40002e243"
+        },
+        "legacy_hash": null,
+        "fingerprint": null,
+        "fingerprints": {
+          "NavierStokesR3.WholeSpaceUniqueness.candidate_unique_on_Icc": "pl-fp-v1:7f5e31cd55aa2b331dc95143b0af174582f1a920b3f13fd2b47618d7e1a36b7e"
+        }
+      },
+      "reviewer": {
+        "id": "llm:Claude-(Claude-Code)-2026-10-19",
+        "kind": "model",
+        "name": null,
+        "model": "Claude (Claude Code)",
+        "same_family_as_author": "no",
+        "identity": "self-declared"
+      },
+      "reading": {
+        "text": "Not a blind reading: before this review I had read the linked Lean declaration, the audit's mapping notes, and the critique arXiv 2610.08144 (Bastounis, Circelli, Hansen), which discusses the proof of this lemma (its pressure-flux bound (10.19)).\n\nSetting: whole space R³, viscosity one, times in [0, T] for a fixed T < 1. The force f is the one constructed in Lemma 10.3; u is the localized velocity of Proposition 10.1 (the constructed solution, with its pressure).\n\nHypotheses on the competitor: (v, P) is a smooth solution of (1.1) (the forced Navier–Stokes equations, divergence-free) on R³ × [0, T], with the force f; v(·, 0) = 0; v ∈ L∞([0, T]; L²(R³)), that is, uniformly bounded kinetic energy on [0, T]. No decay or growth condition on P is stated.\n\nConclusion: v = u on R³ × [0, T] (the velocities agree; nothing is claimed about the pressures).\n\nQuantifiers: for each T < 1, for every such (v, P).\n\nAmbiguity: \"smooth solution on R³ × [0, T]\" — I read smooth up to t = 0 and t = T, with the equations holding on the closed interval (or at least the open one, by continuity the same). This review is of the statement only; the critique's point concerns the argument of the proof, which a statement review does not assess.\n",
+        "locked_at": "2026-10-19T15:42:28Z",
+        "revealed_by": []
+      },
+      "comparison": {
+        "text": "Verdict: broader (statement). NavierStokesR3.WholeSpaceUniqueness.candidate_unique_on_Icc states, for every T < 1 and every (u, p, f, K) with CandidateProperties 1 u p f K: if v and q are smooth on [0, T] × ℝ³ (ContDiffOn on Comparison.slab 0 T), v has uniformly bounded energy on [0, T] (UniformFiniteEnergy, the lemma's v ∈ L∞([0, T]; L²)), v is divergence-free and solves the equation with force f for 0 < t < T, and v(0, ·) = 0, then u(t, x) = v(t, x) for all t ∈ [0, T] and x. The lemma names one candidate (the localized velocity of Proposition 10.1, the force of Lemma 10.3); the Lean statement covers every candidate. Its hypotheses on the competitor are no stronger than the lemma's (the equation is required only on the open interval; no condition on the pressure at infinity). Conclusion and quantifiers match; nothing is said about pressures, as in the lemma.\n\nThe proof, which this statement verdict does not assess. The Lean proof (classical_uniqueness_on_Icc) closes the energy comparison with WholeSpaceComparisonClosure.eq_of_pressure_flux_bound, whose pressure hypothesis is discharged by PressureFlux.exists_uniform_actual_pressure_flux_bound: there is C_P ≥ 0 such that for every R ≥ 1 and every t ∈ (0, T)\n  |∫ (p − q) ∇(weight R) · (u − v)| ≤ C_P [ (B^{1/2} + 1)(A/R + R⁻²) + R^{−7/4} B^{3/4} ],\nwith B = ‖φ_R⁴ (u − v)‖_{L⁶} (cutoffL6) and A = (∫ φ_R⁸ |∇(u − v)|²)^{1/2} (dissipationRoot). It is proved by Hölder with exponents 6 and 6/5, Sobolev embedding to L², L²-boundedness of the Riesz transforms and a 12/5 interpolation, not by the paper's route.\n\nUnchecked part of the printed proof: (10.19), |∫ π w · ∇χ_R| ≤ C_T R⁻¹ [ (B_R + 1) B_R^{1/2} + R^{−3/4} B_R^{3/4} ] for almost every t, together with the steps that produce it: the decomposition (10.18) φ_R⁴ π* = Σ R_i R_j(φ_R⁴ g_ij) + Σ [φ_R⁴, R_i R_j] g_ij, the L^{3/2} bound C_T(B_R + 1) on the first sum by L^p boundedness of Riesz transforms, the L^{4/3} bound C_T R^{−3/4} on the commutator sum from the kernel K_R, and the interpolation of ‖φ_R³ w‖_3 and ‖φ_R³ w‖_4. The Lean bound has an extra A_R/R term, a R^{−7/4} power, cutoffs defined by powers of φ_R rather than rescaled radii, and holds for every t. Its use of A_R is absorbed by the dissipation in the Lean closure as (10.17) does in the paper. The statement of Lemma 10.5 is established in Lean; the printed argument through (10.19) is not checked by it.\n\nChecklist: setting, hypotheses, quantifiers, definitions, conclusion and constants match for the statement; assumed results and axioms: none beyond the standard three (machinechecked check).\n",
+        "witness": "",
+        "checklist": {
+          "setting": "matches",
+          "hypotheses": "matches",
+          "quantifiers": "matches",
+          "definitions": "matches",
+          "conclusion": "matches",
+          "constants": "matches",
+          "assumed": "matches"
+        },
+        "decided_at": "2026-10-19T15:42:31Z"
+      },
+      "verdict": {
+        "group": "matches",
+        "value": "broader",
+        "detail": "Instantiation that recovers the printed claim: take (u, p, f, K) to be the constructed localized fields of Proposition 10.1 with the force of Lemma 10.3; the construction proves CandidateProperties 1 for them (NavierStokesR3.ActualCandidate.of_localized_fields, used by NavierStokesR3.theorem_1_1). With that candidate, candidate_unique_on_Icc is the lemma, with the equation and divergence-free condition on the competitor needed only on the open interval (0, T).\n"
+      },
+      "author_review": {
+        "shown_at": "2026-10-19T15:42:31Z",
+        "disagreements": "No author review is recorded for this unit; nothing to respond to."
+      },
+      "submitted_at": "2026-10-19T15:42:33Z",
+      "issue_draft": {
+        "kind": "explanatory note",
+        "title": "NavierStokesR3.WholeSpaceUniqueness.candidate_unique_on_Icc: broader (Lemma 10.5)",
+        "body": "Review unit `link:lemma-10.5`, verdict **broader**.\n\nInstantiation that recovers the printed claim: take (u, p, f, K) to be the constructed localized fields of Proposition 10.1 with the force of Lemma 10.3; the construction proves CandidateProperties 1 for them (NavierStokesR3.ActualCandidate.of_localized_fields, used by NavierStokesR3.theorem_1_1). With that candidate, candidate_unique_on_Icc is the lemma, with the equation and divergence-free condition on the competitor needed only on the open interval (0, T)."
+      }
+    },
+    {
+      "schema": "prooflens/review-report@1",
+      "unit": {
+        "id": "link:lemma-8.6",
+        "kind": "link",
+        "name": "NavierStokes.SmoothFamilyTorusInverse.inverse_finiteJets, NavierStokes.SmoothFamilyTorusInverse.inverse_solves, NavierStokes.TemporalMeanUpdate.timeDerivative_unique, NavierStokes.TemporalMeanUpdate.temporal_mean_update, NavierStokes.TemporalMeanUpdate.meanClass_desiredIncrement",
+        "lean": [
+          "NavierStokes.SmoothFamilyTorusInverse.inverse_finiteJets",
+          "NavierStokes.SmoothFamilyTorusInverse.inverse_solves",
+          "NavierStokes.TemporalMeanUpdate.timeDerivative_unique",
+          "NavierStokes.TemporalMeanUpdate.temporal_mean_update",
+          "NavierStokes.TemporalMeanUpdate.meanClass_desiredIncrement"
+        ],
+        "claims": [
+          "P:lemma-8.6"
+        ],
+        "papers": [
+          "P"
+        ]
+      },
+      "pins": {
+        "release": "v-b85d296bd9c1",
+        "project_commit": "d1961e58748d9d2a13ff766b462ebfc40002e243",
+        "manuscripts": {
+          "P": "d1961e58748d9d2a13ff766b462ebfc40002e243"
+        },
+        "legacy_hash": null,
+        "fingerprint": null,
+        "fingerprints": {
+          "NavierStokes.SmoothFamilyTorusInverse.inverse_finiteJets": "pl-fp-v1:78b1c7575d7148986cba48fa4a91ae10c011f05e078928d44e757144fcb1123c",
+          "NavierStokes.SmoothFamilyTorusInverse.inverse_solves": "pl-fp-v1:5e852a0a6cd8ba1f038da453b8104a0b4b1da15093dbff967b30a2903408099d",
+          "NavierStokes.TemporalMeanUpdate.meanClass_desiredIncrement": "pl-fp-v1:ad8da30e3120faa8c81a6609503f522457dd6232abac77e708861199b1db9f14",
+          "NavierStokes.TemporalMeanUpdate.temporal_mean_update": "pl-fp-v1:26f73444bcb743645f69b97981c7583b2f2149539fe58397728f8f9953d9f96f",
+          "NavierStokes.TemporalMeanUpdate.timeDerivative_unique": "pl-fp-v1:eef62475b221a964210bc911d76a74f9849e5b3e3d6a830ca7bdee6c172cd5c7"
+        }
+      },
+      "reviewer": {
+        "id": "llm:Claude-(Claude-Code)-2026-10-19",
+        "kind": "model",
+        "name": null,
+        "model": "Claude (Claude Code)",
+        "same_family_as_author": "no",
+        "identity": "self-declared"
+      },
+      "reading": {
+        "text": "Not a blind reading: before this review I had read the linked Lean declarations, the audit's mapping notes, and the critique arXiv 2610.08144 (Bastounis, Circelli, Hansen), which discusses this lemma.\n\nSetting: the two-torus T² = R²/Z² with coordinate y; the fixed vector v_t of (6.2) (a direction satisfying the Diophantine bound (6.7), |v_t·k| ≥ c/(1+|k|) for k ≠ 0); the constant-coefficient operator N = v_t·∂_y.\n\nHypotheses: F is a smooth function on T² (possibly depending smoothly on slow parameters held fixed) with zero Haar mean.\n\nConclusions:\n1. Existence and uniqueness: Nφ = F has exactly one smooth solution φ with zero mean, written N⁻¹F.\n2. Formula: N⁻¹F = Σ_{k∈Z²∖{0}} F̂(k)/(2πi v_t·k) e^{2πik·y}.\n3. Estimate (8.19): for every integer m ≥ 0 there is a constant C_m (depending on m and v_t, not on F) with ‖N⁻¹F‖_{C^m_y} ≤ C_m‖F‖_{C^{m+4}_y}: a loss of four torus derivatives. The norms are over torus derivatives only (the subscript y).\nQuantifiers: for each m, one C_m for all F.\n\nThe remainder of the lemma's paragraph ((8.20)–(8.22): the chart representatives, the increments in M_α, and the fast-time cancellation equations) applies the inverse; I read it as part of the lemma's statement as printed, since it is in italics with the lemma.\n\nAmbiguity: whether \"the displayed norm bound\" requires C_m uniform over slow parameters (I read: C_m depends only on m and v_t). The proof's sketch (divisor bound plus four derivatives giving a summable (1+|k|)^{-3} series) supports m+4 with full C^{m+4} norms, including mixed derivatives.\n",
+        "locked_at": "2026-10-19T15:42:52Z",
+        "revealed_by": []
+      },
+      "comparison": {
+        "text": "Verdict: narrower. Five declarations are linked. Four correspond to the lemma as printed: the zero-mean smooth solution exists (SmoothFamilyTorusInverse.inverse_solves: directionalPartial d (inverse d f) = f for smooth periodic f of zero mean), it is unique per torus slice (TemporalMeanUpdate.timeDerivative_unique: equal time derivatives and equal square averages give equal functions), and the updates (8.20)–(8.22) and the M_α class of the increments are stated (temporal_mean_update, meanClass_desiredIncrement). The estimate (8.19) does not correspond.\n\nWhat Lean establishes instead of (8.19). inverse_finiteJets: for each direction d and order n there is K ≥ 0 such that for every smooth periodic f, parameter set S and C ≥ 0,\n  JetBound f S (n + 5) C → JetBound (inverse d f) S n (K * C),\nwhere JetBound f S n C means ‖iteratedFDeriv ℝ j f (p, Y)‖ ≤ C for every j ≤ n, p ∈ S and Y ∈ ℝ² (SmoothFamilyTorusInverse.lean:652). In the paper's notation this is ‖N⁻¹F‖_{C^m} ≤ K_m ‖F‖_{C^{m+5}}: five derivatives of input for m of output, where (8.19) prints ‖N⁻¹F‖_{C^m_y} ≤ C_m ‖F‖_{C^{m+4}_y}, four.\n\nIndexing and norms, checked: the paper's output order m is Lean's n; the paper's norms are over torus derivatives only (subscript y), Lean's JetBound bounds the full joint derivatives in the parameters and the torus, of every order up to the bound (a prefix, not one order). For F independent of the parameters the two kinds of norm agree up to a constant depending on the order, so the comparison is exactly 4 against 5. The constant K depends on n, the direction and the parameter space and is chosen before f, S and C, as C_m depends on m and v_t.\n\nEffect on correspondence: (8.19) implies the Lean estimate; the Lean estimate does not imply (8.19). So the lemma as printed is not stated in Lean; a version with one more derivative of loss is. The printed proof's sketch (divisor bound (6.7) |v_t·k|⁻¹ ≤ C(1+|k|), four extra derivatives making Σ(1+|k|)⁻³ summable in two dimensions) supports m+4; the Lean proof sums against a weight (1+|k₁|+|k₂|)⁻⁴ after spending one more derivative (SmoothFourierData.coefficient_seminorm_bound), hence m+5. The two loss counts are both finite, so a later use that needs only finitely many input derivatives (Lemma 9.7) is unaffected in kind; whether a later step needs exactly m+4 is not settled by this review.\n\nChecklist: setting matches (Direction .temporal is v_t; the parameter space P is explicit); hypotheses differ (order n+5, not n+4); quantifiers match; definitions differ (joint norms against torus norms, equivalent for parameter-independent F); conclusion matches in form; constants differ in the loss; assumed results and axioms: none beyond propext, Classical.choice, Quot.sound (machinechecked check: \"linked: Lean proof checked\" for all five).\n",
+        "witness": "",
+        "checklist": {
+          "setting": "matches",
+          "hypotheses": "differs",
+          "quantifiers": "matches",
+          "definitions": "differs",
+          "conclusion": "matches",
+          "constants": "differs",
+          "assumed": "matches"
+        },
+        "decided_at": "2026-10-19T15:42:56Z"
+      },
+      "verdict": {
+        "group": "problem",
+        "value": "narrower",
+        "detail": "Added hypothesis: bounds on all derivatives of order up to n + 5 of the source, where (8.19) needs n + 4. Lost case: a source with bounded derivatives up to order m + 4 but not m + 5 gets no C^m bound on N⁻¹F from the Lean. Lean states ‖N⁻¹F‖_{C^n} ≤ K‖F‖_{C^{n+5}}, which (8.19) implies but which does not imply (8.19).\n"
+      },
+      "author_review": {
+        "shown_at": "2026-10-19T15:42:56Z",
+        "disagreements": "No author review is recorded for this unit; nothing to respond to."
+      },
+      "submitted_at": "2026-10-19T15:42:57Z",
+      "issue_draft": {
+        "kind": "defect",
+        "title": "NavierStokes.SmoothFamilyTorusInverse.inverse_finiteJets, NavierStokes.SmoothFamilyTorusInverse.inverse_solves, NavierStokes.TemporalMeanUpdate.timeDerivative_unique, NavierStokes.TemporalMeanUpdate.temporal_mean_update, NavierStokes.TemporalMeanUpdate.meanClass_desiredIncrement: narrower (Lemma 8.6)",
+        "body": "Review unit `link:lemma-8.6`, verdict **narrower**.\n\nAdded hypothesis: bounds on all derivatives of order up to n + 5 of the source, where (8.19) needs n + 4. Lost case: a source with bounded derivatives up to order m + 4 but not m + 5 gets no C^m bound on N⁻¹F from the Lean. Lean states ‖N⁻¹F‖_{C^n} ≤ K‖F‖_{C^{n+5}}, which (8.19) implies but which does not imply (8.19)."
+      }
+    }
+  ]
+}
