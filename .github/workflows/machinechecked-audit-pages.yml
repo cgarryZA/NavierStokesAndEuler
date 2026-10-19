@@ -1,0 +1,35 @@
+# Publishes the MachineChecked audit of this repository on GitHub Pages: the built reader on the
+# `audit-site` branch (written by `machinechecked build --site`), deployed as it is. It runs no
+# Lean and builds nothing.
+name: Publish the MachineChecked audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/machinechecked-audit-pages.yml]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: audit-site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
